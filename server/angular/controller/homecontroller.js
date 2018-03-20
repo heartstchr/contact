@@ -27,11 +27,11 @@
             phone: CONTACT_LIST.defaultPhone
         };
 
-        contactService.GetAll()
-            .then(function (data) {
-                cl.Contacts = data;
-            });
-        // cl.Contacts = contactService.GetAll();
+        // contactService.GetAll()
+        //     .then(function (data) {
+        //         cl.Contacts = data;
+        //     });
+        cl.Contacts = contactService.GetAll();
 
         function saveContact() {
             cl.contact.id = cl.Contacts.length +1;

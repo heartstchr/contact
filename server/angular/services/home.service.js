@@ -14,8 +14,9 @@
         return service;
 
         function GetAll() {
-            return $http.get('/contacts')
-                .then(handleSuccess, handleError('Error getting all contacts'));
+            // return $http.get('/contacts')
+            //     .then(handleSuccess, handleError('Error getting all contacts'));
+            return CONTACT_LIST.default;
         }
 
         // private functions
