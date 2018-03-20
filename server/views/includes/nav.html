@@ -1,5 +1,5 @@
 <nav>
-    <li ng-repeat="item in items" ng-click="showChilds($index)">
+    <li ng-repeat="item in items" ng-click="activate($index)" ng-class="{active: item.active}">
         <a href="{{item.url}}">
             <span class="{{item.icon}}"></span> {{ item.name }}
         </a>

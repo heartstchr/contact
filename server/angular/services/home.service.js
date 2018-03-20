@@ -5,11 +5,12 @@
     .module('app')
     .factory('contactService', contactService);
 
-    contactService.$inject = ['$http','CONTACT_LIST'];
-    function contactService($http,CONTACT_LIST) {
+    contactService.$inject = ['$http','CONTACT_LIST','$rootScope'];
+    function contactService($http,CONTACT_LIST,$rootScope) {
         var service = {};
 
         service.GetAll = GetAll;
+        service.Save = Save;
 
         return service;
 
@@ -19,6 +20,9 @@
             // return CONTACT_LIST.default;
         }
 
+        function Save(data) {
+            return $rootScope.Contacts.push(data);
+        }
         // private functions
 
         function handleSuccess(res) {

@@ -30,7 +30,7 @@
             })
             .when('/404', {
                 title: '404 ',
-                controller: '404Controller',
+                controller: 'HomeController',
                 templateUrl: 'views/404.html',
                 controllerAs: 'cl'
             })
@@ -72,32 +72,15 @@
             replace: true,
             templateUrl: "views/includes/nav.html",
             controller: ['$scope', '$filter', function ($scope, $filter) {
-                $scope.isUserLoggedIn = false;
-                $scope.menu = false;
-                $scope.colapseMenu = true;
-                $scope.toggleMenu = function () {
-                    $scope.menu = ($scope.menu === false) ? true : false;
-                };
-                $scope.cMenu = function () {
-                    $scope.colapseMenu = ($scope.colapseMenu === false) ? true : false;
-                };
-                $scope.showChilds = function (index) {
+                $scope.activate = function (index) {
                     $scope.menu = true;
                     $scope.items[index].active = !$scope.items[index].active;
-                    $scope.items[index].subIcon = "glyphicon glyphicon-chevron-down pull-right";
-                    collapseAnother(index);
+                    deactivateAnother(index);
                 };
-                $scope.showAllChilds = function (index) {
-                    $scope.items[index].active = !$scope.items[index].active;
-                    $scope.items[index].subIcon = "glyphicon glyphicon-chevron-down pull-right";
-                    collapseAnother(index);
-                };
-
-                var collapseAnother = function (index) {
+                var deactivateAnother = function (index) {
                     for (var i = 0; i < $scope.items.length; i++) {
                         if (i != index) {
                             $scope.items[i].active = false;
-                            $scope.items[i].subIcon = "glyphicon glyphicon-chevron-right pull-right";
                         }
                     }
                 };

@@ -45,7 +45,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="contact in cl.Contacts | orderBy:sortType:sortReverse | filter:search as result">
+            <tr ng-repeat="contact in Contacts | orderBy:sortType:sortReverse | filter:search as result">
                 <td>{{ contact.id }}</td>
                 <td>{{ contact.name }}</td>
                 <td class="multiple">

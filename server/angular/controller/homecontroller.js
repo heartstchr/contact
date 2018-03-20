@@ -7,19 +7,12 @@
         .filter('propsFilter', propsFilter)
         .filter('tel', tel);
 
-    HomeController.$injector = ['$scope', '$timeout','', 'contactService','FlashService', 'CONTACT_LIST'];
+    HomeController.$injector = ['$scope', '$route', '$rootScope', '$timeout', '', 'contactService', 'FlashService', 'CONTACT_LIST'];
 
-    function HomeController($scope, $timeout,$location, contactService,FlashService, CONTACT_LIST) {
+    function HomeController($scope, $route, $rootScope, $timeout, $location, contactService, FlashService, CONTACT_LIST) {
         var cl = this;
 
         cl.contact = {};
-        cl.Contacts = [];
-        cl.addNewPhone = addNewPhone;
-        cl.removePhone = removePhone;
-        cl.addNewEmail = addNewEmail;
-        cl.removeEmail = removeEmail;
-        cl.saveContact = saveContact;
-
 
         cl.available = {
             type: CONTACT_LIST.type,
@@ -27,18 +20,32 @@
             phone: CONTACT_LIST.defaultPhone
         };
 
-        contactService.GetAll()
-            .then(function (data) {
-                cl.Contacts = data;
-            });
+        cl.addNewPhone = addNewPhone;
+        cl.removePhone = removePhone;
+        cl.addNewEmail = addNewEmail;
+        cl.removeEmail = removeEmail;
+        cl.saveContact = saveContact;
+        cl.getContacts = getContacts;
+        console.log($rootScope.Contacts);
+        if(!$rootScope.Contacts){
+            getContacts();
+        }
+        function getContacts() {
+            contactService.GetAll()
+                .then(function (data) {
+                    $rootScope.Contacts=[];
+                    $rootScope.Contacts=data;
+                    cl.Contacts = $rootScope.Contacts;
+                });
+        }
+
         // cl.Contacts = contactService.GetAll();
 
         function saveContact() {
-            cl.contact.id = cl.Contacts.length +1;
-            cl.contact.name = cl.contact.fname +''+ cl.contact.lname;
-            cl.Contacts.push(cl.contact);
+            cl.contact.id = $rootScope.Contacts.length + 1;
+            cl.contact.name = cl.contact.fname + ' ' + cl.contact.lname;
+            contactService.Save(cl.contact);
             FlashService.Success('Contacts Saved Successfully', true);
-            console.log(cl.Contacts)
             $location.path('/contacts');
         }
 
@@ -126,6 +133,4 @@
             return ("+" + country + " (" + city + ") " + number).trim();
         };
     }
-
-
 })();
