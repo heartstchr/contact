@@ -1,0 +1,72 @@
+<div class="cont">
+    <div class="tab">
+        <search></search>
+        <a class="btn btn-primary pull-right" ng-href="#/contact/create">Add Contact</a>
+        <div class="clearfix"></div>
+        <h2>Contact List</h2>
+        <pagination></pagination>
+        <table class="table table-bordered table-responsive table-striped table-hover fadeInDown animated">
+            <thead>
+            <tr>
+                <th>
+                    <a ng-click="sortType = '$index'; sortReverse = !sortReverse">
+                        #
+                        <span ng-show="sortType == '$index' && !sortReverse"
+                              class="glyphicon glyphicon-arrow-down"></span>
+                        <span ng-show="sortType == '$index' && sortReverse" class="glyphicon glyphicon-arrow-up"></span>
+                    </a>
+                </th>
+                <th>
+                    <a ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                        Name
+                        <span ng-show="sortType == 'name' && !sortReverse"
+                              class="glyphicon glyphicon-arrow-down"></span>
+                        <span ng-show="sortType == 'name' && sortReverse" class="glyphicon glyphicon-arrow-up"></span>
+                    </a>
+                </th>
+                <th>
+                    <a ng-click="sortType = 'address'; sortReverse = !sortReverse">
+                        Email Address
+                        <span ng-show="sortType == 'address' && !sortReverse"
+                              class="glyphicon glyphicon-arrow-down"></span>
+                        <span ng-show="sortType == 'address' && sortReverse"
+                              class="glyphicon glyphicon-arrow-up"></span>
+                    </a>
+                </th>
+                <th>
+                    <a ng-click="sortType = 'phonenumber'; sortReverse = !sortReverse">
+                        Contact Number
+                        <span ng-show="sortType == 'phonenumber' && !sortReverse"
+                              class="glyphicon glyphicon-arrow-down"></span>
+                        <span ng-show="sortType == 'phonenumber' && sortReverse"
+                              class="glyphicon glyphicon-arrow-up"></span>
+                    </a>
+                </th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="contact in cl.Contacts | orderBy:sortType:sortReverse | filter:search as result">
+                <td>{{ contact.id }}</td>
+                <td>{{ contact.name }}</td>
+                <td class="multiple">
+                    <p ng-repeat="email in contact.email">
+                        <span>{{ email.type }}: </span>{{ email.value}}
+                    </p>
+                </td>
+                <td class="multiple">
+                    <p ng-repeat="phone in contact.phone">
+                        <span>{{ phone.type }}: </span>{{ phone.value | tel }}
+                    </p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <pagination></pagination>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+
+
+  

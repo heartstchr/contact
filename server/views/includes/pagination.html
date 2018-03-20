@@ -1,0 +1,20 @@
+<div class="form-group">
+    <div class="col col-md-2">
+        <select class="form-control"
+                ng-init="numPerPage = numoftrans.options[0].toString() || numPerPage "
+                ng-model="numPerPage">
+            <option ng-repeat="option in numoftrans.options" value="{{option}}">{{option}}</option>
+        </select>
+    </div>
+    <div class="col col-md-9 pull-right">
+        <uib-pagination
+                ng-model="currentPage"
+                total-items="Report.length"
+                items-per-page="numPerPage"
+                max-size="maxSize"
+                boundary-links="true"
+                force-ellipses="true"
+                class="pagination-sm">
+        </uib-pagination>
+    </div>
+</div>

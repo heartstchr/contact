@@ -1,0 +1,7 @@
+<nav>
+    <li ng-repeat="item in items" ng-click="showChilds($index)">
+        <a href="{{item.url}}">
+            <span class="{{item.icon}}"></span> {{ item.name }}
+        </a>
+    </li>
+</nav>
