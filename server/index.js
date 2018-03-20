@@ -1,5 +1,5 @@
 
-var Contact = require('./model/contact').Contact;
+var Contact = require('./model/contact');
 // Base routes for default index/root path, about page, 404 error pages, and others..
 exports.register = function(server, options, next){
 
@@ -33,11 +33,7 @@ exports.register = function(server, options, next){
             method: 'GET',
             path: '/contacts',
             config: {
-                handler: function(request, reply){
-                    Contact.GetAll(function (err,data) {
-                        reply(JSON.stringify(data, null, 4)).type('application/json');
-                    });
-                },
+                handler:Contact.GetAll,
                 id: 'contacts'
             }
         }

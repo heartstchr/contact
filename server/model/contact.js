@@ -1,6 +1,5 @@
-var contact ={};
-contact.GetAll= function () {
-    return [
+var getAll= function(request, reply){
+    var data= [
         {
             id: 1,
             name: "Gopala Krishnan",
@@ -55,9 +54,10 @@ contact.GetAll= function () {
                 {type: "Work", value: "9876543200"}
             ]
         }
-    ]
-}
+    ];
+    reply(JSON.stringify(data, null, 4)).type('application/json');
+};
 
 module.exports = {
-    Contact: contact
+    GetAll: getAll
 };
