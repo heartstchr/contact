@@ -24,28 +24,29 @@
                 <button class="side-btn pull-right" ng-click="cl.addNewEmail()">+</button>
             </div>
             <hr>
-            <div class="form-group" ng-repeat="email in cl.available.email">
+            <div class="form-group" ng-repeat="email in cl.available.email" ng-class="{ 'has-error': form[{{'email' + $index }}].$dirty && form[{{'email' + $index }}].$error.required }">
                 <div class="col-sm-2 control-label">
-                    <select name="type"
+                    <select name="{{ 'type'+$index }}"
                             ng-init="cl.contact.email[$index].type = cl.contact.email[$index].type || cl.available.type[0]"
                             ng-model="cl.contact.email[$index].type">
                         <option ng-repeat="option in cl.available.type" value="{{option}}">{{option}}</option>
                     </select>
                 </div>
                 <div class="col-sm-9">
-                    <input type="email" name="email" required ng-model="cl.contact.email[$index].value" class="form-control"
+                    <input type="email" name="{{ 'email'+$index }}" required ng-model="cl.contact.email[$index].value" class="form-control"
                            placeholder="Enter Email Address">
+                    <span ng-show="form[{{ 'email'+$index }}].$dirty && form[{{ 'email'+$index }}].$error.required" class="help-block">Email is required</span>
                 </div>
-                <button class="side-btn pull-right" ng-click="cl.removeEmail()">-</button>
+                <button class="side-btn pull-right" ng-click="cl.removeEmail($index)">-</button>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Phone No:</label>
                 <button class="side-btn pull-right" ng-click="cl.addNewPhone()">+</button>
             </div>
             <hr>
-            <div class="form-group" ng-repeat="phone in cl.available.phone">
+            <div class="form-group" ng-repeat="phone in cl.available.phone" ng-class="{ 'has-error': form[{{'phone' + $index }}].$dirty && form[{{'phone' + $index }}].$error.required }">
                 <div class="col-sm-2 control-label">
-                    <select name="type"
+                    <select name="{{ 'type'+$index }}"
                             ng-init="cl.contact.phone[$index].type = cl.contact.phone[$index].type || cl.available.type[0]"
                             ng-model="cl.contact.phone[$index].type">
                         <option ng-repeat="option in cl.available.type" value="{{option}}">{{option}}</option>
@@ -54,14 +55,14 @@
                 <div class="col-sm-9">
                     <div class="input-group">
                         <div class="input-group-addon">+91</div>
-                        <input type="number" name="contactNumber" required ng-model="cl.contact.phone[$index].value" class="form-control"
+                        <input type="number" name="{{'phone' + $index }}" required ng-model="cl.contact.phone[$index].value" class="form-control"
                                ng-minlength="10" ng-maxlength="10" placeholder="Enter Contact No">
                     </div>
-                    <span ng-show="form.contactNumber.$dirty && form.contactNumber.$error.required" class="help-block">Phone Number is required</span>
-                    <span ng-show="form.contactNumber.$dirty && form.contactNumber.$error.number" class="help-block">Not a valid Phone number </span>
-                    <span ng-show="form.contactNumber.$dirty && form.contactNumber.$error.minlength" class="help-block">Phone Number should be 10 digits</span>
+                    <span ng-show="form[{{'phone' + $index }}].$dirty && form[{{'phone' + $index }}].$error.required" class="help-block">Phone Number is required</span>
+                    <span ng-show="form[{{'phone' + $index }}].$dirty && form[{{'phone' + $index }}].$error.number" class="help-block">Not a valid Phone number </span>
+                    <span ng-show="form[{{'phone' + $index }}].$dirty && form[{{'phone' + $index }}].$error.minlength" class="help-block">Phone Number should be 10 digits</span>
                 </div>
-                <button class="side-btn pull-right" ng-click="cl.removePhone()">-</button>
+                <button class="side-btn pull-right" ng-click="cl.removePhone($index)">-</button>
             </div>
             <div class="form-actions pull-right act">
                 <button type="submit" ng-disabled="form.$invalid" class="btn btn-default">Save</button>
@@ -69,7 +70,6 @@
             </div>
         </form>
     </div>
-    <div class="clearfix"></div>
 </div>
 
 

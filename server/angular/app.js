@@ -109,14 +109,14 @@
             restrict: 'E',
             replace: true,
             templateUrl: "views/includes/pagination.html",
-            controller: ['$scope', '$filter', function ($scope, $filter) {
-                $scope.numoftrans = {
+            controller: ['$rootScope', '$filter', function ($rootScope, $filter) {
+                $rootScope.numoftrans = {
                     options: [10, 25, 50, 75]
                 };
-                $scope.filteredTrans = [];
-                $scope.currentPage = 1;
-                $scope.numPerPage = 10;
-                $scope.maxSize = 5;
+                $rootScope.filteredTrans = [];
+                $rootScope.currentPage = 1;
+                $rootScope.numPerPage = 10;
+                $rootScope.maxSize = 5;
             }]
         }
     }

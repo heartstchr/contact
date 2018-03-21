@@ -45,7 +45,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="contact in Contacts | orderBy:sortType:sortReverse | filter:search as result">
+            <tr ng-repeat="contact in filteredItems =(Contacts | filter:search | orderBy:sortType:sortReverse | startFrom:(currentPage-1)*numPerPage | limitTo:numPerPage)">
                 <td>{{ contact.id }}</td>
                 <td>{{ contact.name }}</td>
                 <td class="multiple">

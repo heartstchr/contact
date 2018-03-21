@@ -4,6 +4,7 @@
     angular
         .module('app')
         .controller('HomeController', HomeController)
+        .filter('startFrom',startFrom)
         .filter('propsFilter', propsFilter)
         .filter('tel', tel);
 
@@ -54,9 +55,10 @@
             cl.available.phone.push({'id': newItemNo, 'name': 'Phone' + newItemNo});
         }
 
-        function removePhone() {
-            var lastItem = cl.available.phone.length - 1;
-            cl.available.phone.splice(lastItem);
+        function removePhone(index) {
+            // var lastItem = cl.available.phone.length - 1;
+            cl.available.phone.splice(index);
+            delete cl.contact.phone[index];
         }
 
         function addNewEmail() {
@@ -64,9 +66,11 @@
             cl.available.email.push({'id': newItemNo, 'name': 'Email' + newItemNo});
         }
 
-        function removeEmail() {
-            var lastItem = cl.available.email.length - 1;
-            cl.available.email.splice(lastItem);
+        function removeEmail(index) {
+            console.log('index',cl.contact.email);
+            // var lastItem = cl.available.email.length - 1;
+            cl.available.email.splice(index);
+            delete cl.contact.email[index];
         }
     }
 
@@ -131,6 +135,16 @@
             }
             number = number.slice(0, 3) + '-' + number.slice(3);
             return ("+" + country + " (" + city + ") " + number).trim();
+        };
+    }
+
+    function startFrom() {
+        return function (input, start) {
+            if (input) {
+                start = +start;
+                return input.slice(start);
+            }
+            return [];
         };
     }
 })();
