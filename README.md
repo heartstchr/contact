@@ -27,5 +27,3 @@ http://localhost:7777
 
 	* Minified css.
 	* css at the top and js at bottom.
-	* No use of Bootstrap to reduce load time.
-	* Reduce DNS lookup.
