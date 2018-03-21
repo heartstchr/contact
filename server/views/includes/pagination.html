@@ -6,7 +6,7 @@
             <option ng-repeat="option in numoftrans.options" value="{{option}}">{{option}}</option>
         </select>
     </div>
-    <div class="col col-md-9 pull-right">
+    <div class="col col-md-10">
         <uib-pagination
                 ng-model="currentPage"
                 total-items="Contacts.length"
@@ -14,7 +14,7 @@
                 max-size="maxSize"
                 boundary-links="true"
                 force-ellipses="true"
-                class="pagination-sm">
+                class="pagination-sm pull-right">
         </uib-pagination>
     </div>
 </div>
